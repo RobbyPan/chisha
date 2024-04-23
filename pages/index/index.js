@@ -39,6 +39,9 @@ Page({
     ],
     randomItem: "疯狂星期四",
     randomTimer: null,
+    clickCount: 0,
+    toTakeOut: false,
+    callMomFood: false,
   },
   /**
    * 处理按钮点击事件
@@ -46,6 +49,9 @@ Page({
   handleBtnClick() {
     this.setData({
       isTitleShow: false,
+      clickCount: this.data.clickCount > 10 ? 0 : this.data.clickCount,
+      toTakeOut: this.data.clickCount === 5,
+      callMomFood: this.data.clickCount === 10,
     });
     if (this.data.isBtnClick) {
       clearInterval(this.data.randomTimer);
@@ -56,6 +62,8 @@ Page({
     }
     this.setData({
       isBtnClick: true,
+      clickCount: this.data.clickCount + 1,
+      callMomFood: this.data.clickCount > 10,
       randomTimer: setInterval(() => {
         this.getRandomFromList();
       }, 80),
@@ -152,6 +160,7 @@ Page({
       });
     }, 2000);
   },
+
   onLoad() {
     console.log("onLoad");
   },

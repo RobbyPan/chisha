@@ -52,6 +52,23 @@
   flex-basis: 50%;
   height: 100rpx;
 }
+.container .main-container .meitaun-container {
+  width: 100%;
+  height: 250rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  bottom: 20rpx;
+  font-size: 32rpx;
+}
+.container .main-container .meitaun-container .links-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-basis: 50%;
+  height: 100rpx;
+}
 .container .btn-container {
   font-size: 35rpx;
   display: flex;
