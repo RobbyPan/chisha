@@ -1,0 +1,33 @@
+<!-- index.wxml -->
+<navigation-bar title="Weixin" back="{{false}}" color="black" background="#FFF"></navigation-bar>
+<scroll-view class="scrollarea" scroll-y type="list">
+  <view class="container">
+    <view class="main-container">
+      <view class="title-container">
+        <view wx:if="{{isTitleShow}}">{{title}}</view>
+        <view wx:else>今天吃{{randomItem}}吧！</view>
+      </view>
+      <view wx:if="{{!isBtnClick&&!isTitleShow}}" class="links-container">
+        <view class="links-box" bindtap="gotoBilibili">
+          <image src="../../images/bilibili.png"></image>
+          <view>搜教程</view>
+        </view>
+        <view class="links-box" bindtap="gotoMeituan">
+          <image src="../../images/meituan.png"></image>
+          <view>领红包</view>
+        </view>
+        <view class="links-box" bindtap="gotoRedbook">
+          <image src="../../images/xiaohongshu.png"></image>
+          <view>看分享</view>
+        </view>
+        <view class="links-box" bindtap="">
+          <image src="../../images/navi.png"></image>
+          <view>搜门店</view>
+        </view>
+      </view>
+    </view>
+    <view class="btn-container" bindtap="handleBtnClick">
+      <view>{{isBtnClick?"停止":"试试看"}}</view>
+    </view>
+  </view>
+</scroll-view>
