@@ -14,7 +14,8 @@ Page({
     // console.log(this.data.url);
     // console.log(decodeURIComponent(this.data.url));
     this.setData({
-      url: decodeURIComponent(this.data.url),
+      url: this.data.url,
+      // url: decodeURIComponent(this.data.url),
     });
   },
 

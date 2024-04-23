@@ -174,4 +174,21 @@ Page({
   onShow() {
     console.log("onShow");
   },
+  /**
+   * 转发给朋友
+   */
+  onShareAppMessage() {
+    return {
+      title: "随机抽签吃啥",
+      path: "/pages/index/index",
+    };
+  },
+  /**
+   * 转发到朋友圈
+   */
+  onShareTimeline() {
+    return {
+      title: "随机抽签吃啥",
+    };
+  },
 });
