@@ -3,11 +3,17 @@
 <scroll-view class="scrollarea" scroll-y type="list">
   <view class="container">
     <view class="main-container">
+      <!-- logo -->
+      <view class="logo">
+        <image src="../../images/logo.png"></image>
+      </view>
+      <!-- 主要文字等 -->
       <view class="title-container">
         <view wx:if="{{isTitleShow}}">{{title}}</view>
         <view wx:if="{{!isTitleShow&&!callMomFood}}">今天吃{{randomItem}}吧！</view>
         <view wx:if="{{callMomFood}}">给咱妈说回家吃吧！</view>
       </view>
+      <!-- 各种链接跳转 -->
       <view wx:if="{{!isBtnClick&&!isTitleShow&&!toTakeOut&&!callMomFood}}" class="links-container">
         <view class="links-box" bindtap="gotoBilibili">
           <image src="../../images/bilibili.png"></image>
@@ -26,6 +32,7 @@
           <view>搜门店</view>
         </view>
       </view>
+      <!-- 美团链接跳转 -->
       <view wx:if="{{toTakeOut}}" class="meitaun-container">
         <view class="links-box" bindtap="gotoMeituan">
           <image src="../../images/meituan.png"></image>
@@ -33,9 +40,11 @@
         </view>
       </view>
     </view>
+    <!-- 开始按钮 -->
     <view class="btn-container" bindtap="handleBtnClick">
       <view>{{isBtnClick?"停止":"开始"}}</view>
     </view>
+    <!-- 自定义菜单 -->
     <view class="options-container" bindtap="editHandler">
       <view>自定义菜单</view>
     </view>

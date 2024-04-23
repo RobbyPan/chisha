@@ -23,6 +23,16 @@
   align-items: center;
   position: relative;
 }
+.container .main-container .logo {
+  position: absolute;
+  top: 0;
+  width: 250rpx;
+  height: 250rpx;
+}
+.container .main-container .logo image {
+  width: 100%;
+  height: 100%;
+}
 .container .main-container .title-container {
   width: 100%;
   height: 300rpx;
