@@ -63,7 +63,8 @@ Page({
     this.setData({
       isBtnClick: true,
       clickCount: this.data.clickCount + 1,
-      callMomFood: this.data.clickCount > 10,
+      toTakeOut: false,
+      callMomFood: false,
       randomTimer: setInterval(() => {
         this.getRandomFromList();
       }, 80),
@@ -80,6 +81,12 @@ Page({
       randomItem,
     });
   },
+
+  /**
+   * 自定义菜单
+   */
+  editHandler() {},
+
   /**
    * 跳转bilibili小程序
    */

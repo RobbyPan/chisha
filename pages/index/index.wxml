@@ -6,7 +6,7 @@
       <view class="title-container">
         <view wx:if="{{isTitleShow}}">{{title}}</view>
         <view wx:if="{{!isTitleShow&&!callMomFood}}">今天吃{{randomItem}}吧！</view>
-        <view wx:if="{{callMomFood}}">给咱妈打个电话回家吃吧</view>
+        <view wx:if="{{callMomFood}}">给咱妈说回家吃吧！</view>
       </view>
       <view wx:if="{{!isBtnClick&&!isTitleShow&&!toTakeOut&&!callMomFood}}" class="links-container">
         <view class="links-box" bindtap="gotoBilibili">
@@ -35,6 +35,9 @@
     </view>
     <view class="btn-container" bindtap="handleBtnClick">
       <view>{{isBtnClick?"停止":"开始"}}</view>
+    </view>
+    <view class="options-container" bindtap="editHandler">
+      <view>自定义菜单</view>
     </view>
   </view>
 </scroll-view>
