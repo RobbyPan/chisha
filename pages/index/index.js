@@ -167,12 +167,23 @@ Page({
       });
     }, 2000);
   },
-
-  onLoad() {
-    console.log("onLoad");
+  /**
+   * 初始状态
+   */
+  reset() {
+    this.setData({
+      isTitleShow: true,
+      clickCount: 0,
+      toTakeOut: false,
+      callMomFood: false,
+      randomItem: "疯狂星期四",
+      randomTimer: null,
+      isBtnClick: false,
+    });
   },
+  onLoad() {},
   onShow() {
-    console.log("onShow");
+    this.reset();
   },
   /**
    * 转发给朋友
