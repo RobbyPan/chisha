@@ -11,7 +11,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
-    console.log(this.data.url);
+    // console.log(this.data.url);
+    // console.log(decodeURIComponent(this.data.url));
+    this.setData({
+      url: decodeURIComponent(this.data.url),
+    });
   },
 
   /**

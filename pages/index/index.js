@@ -132,7 +132,26 @@ Page({
       });
     }, 2000);
   },
-
+  /**
+   * 跳转腾讯地图小程序
+   */
+  gotoMap() {
+    wx.setClipboardData({
+      data: this.data.randomItem,
+      success() {
+        wx.showToast({
+          title: "已复制到剪贴板",
+          icon: "none",
+          duration: 2000,
+        });
+      },
+    });
+    setTimeout(() => {
+      wx.navigateToMiniProgram({
+        appId: "wx7643d5f831302ab0",
+      });
+    }, 2000);
+  },
   onLoad() {
     console.log("onLoad");
   },

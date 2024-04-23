@@ -20,7 +20,7 @@
           <image src="../../images/xiaohongshu.png"></image>
           <view>看分享</view>
         </view>
-        <view class="links-box" bindtap="">
+        <view class="links-box" bindtap="gotoMap">
           <image src="../../images/navi.png"></image>
           <view>搜门店</view>
         </view>
