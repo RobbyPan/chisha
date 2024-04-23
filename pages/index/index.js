@@ -141,9 +141,16 @@ Page({
         });
       },
     });
+    // 跳转美团推广页
+    // setTimeout(() => {
+    //   wx.navigateTo({
+    //     url: `/pages/web/web`,
+    //   });
+    // }, 2000);
+    // 跳转美团小程序
     setTimeout(() => {
-      wx.navigateTo({
-        url: `/pages/web/web`,
+      wx.navigateToMiniProgram({
+        appId: "wx2c348cf579062e56",
       });
     }, 2000);
   },
