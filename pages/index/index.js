@@ -326,6 +326,13 @@ Page({
     this.reset();
   },
 
+  onHide() {
+    // 如果存在定时器则关闭
+    if (this.data.randomTimer) {
+      clearInterval(this.data.randomTimer);
+    }
+  },
+
   /**
    * 转发给朋友
    */
