@@ -21,21 +21,25 @@
         </view>
         <view class="links-box" bindtap="gotoMeituan">
           <image src="../../images/meituan.png"></image>
-          <view>领红包</view>
+          <view>点外卖</view>
         </view>
         <view class="links-box" bindtap="gotoRedbook">
           <image src="../../images/xiaohongshu.png"></image>
           <view>看分享</view>
         </view>
-        <view class="links-box" bindtap="gotoMap">
-          <image src="../../images/navi.png"></image>
-          <view>搜门店</view>
+        <view class="links-box" bindtap="gotoEleme">
+          <image src="../../images/eleme.png"></image>
+          <view>领红包</view>
         </view>
       </view>
       <!-- 美团链接跳转 -->
       <view wx:if="{{toTakeOut}}" class="meitaun-container">
         <view class="links-box" bindtap="gotoMeituan">
           <image src="../../images/meituan.png"></image>
+          <view>要不点外卖试试？</view>
+        </view>
+        <view class="links-box" bindtap="gotoEleme">
+          <image src="../../images/eleme.png"></image>
           <view>要不点外卖试试？</view>
         </view>
       </view>

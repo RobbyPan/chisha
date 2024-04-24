@@ -251,6 +251,28 @@ Page({
   },
 
   /**
+   * 跳转饿了么小程序
+   */
+  gotoEleme() {
+    wx.setClipboardData({
+      data: this.data.randomItem,
+      success() {
+        wx.showToast({
+          title: "已复制到剪贴板",
+          icon: "none",
+          duration: 2000,
+        });
+      },
+    });
+    setTimeout(() => {
+      wx.navigateToMiniProgram({
+        appId: "wxece3a9a4c82f58c9",
+        path: "ele-recommend-price/pages/guest/index?inviterId=eb3ee92&chInfo=ch_wechat_chsub_CopyLink&_ltracker_f=grzx0913",
+      });
+    }, 2000);
+  },
+
+  /**
    * 恢复初始状态
    */
   reset() {
