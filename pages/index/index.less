@@ -99,7 +99,119 @@
         width: 350rpx;
         height: 100rpx;
         border-radius: 50rpx;
-        margin-bottom: 30rpx;
+        margin-bottom: 20rpx;
         box-shadow: 0rpx 15rpx 20rpx rgba(100, 103, 239, 0.2);
     }
+
+    .type-container {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+        flex-direction: row;
+        width: 500rpx;
+        flex-wrap: wrap;
+        margin-bottom: 10rpx;
+
+        .type-box {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-basis: 25%;
+        }
+    }
+}
+
+.modal {
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.1);
+    padding-top: 200rpx;
+    z-index: 99;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+
+    .modal-container {
+        width: 80vw;
+        height: 65vh;
+        background-color: #fff;
+        border-radius: 40rpx;
+        padding: 20rpx 20rpx;
+
+        .modal-title-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-shrink: 0;
+            font-size: 40rpx;
+            margin-bottom: 20rpx;
+        }
+
+        .modal-textarea-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+
+            .modal-textarea {
+                width: 100%;
+                height: 850rpx;
+                padding: 0rpx 10rpx;
+                border-radius: 40rpx;
+                background-color: #f8f8f8;
+                z-index: 999;
+            }
+        }
+
+        .modal-btn-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+            padding: 50rpx 0;
+            position: relative;
+
+            .modal-btn-confirm {
+                width: 250rpx;
+                height: 60rpx;
+                border-radius: 30rpx;
+                background-color: #6467ef;
+                color: #fff;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+            .modal-btn-reset {
+                position: absolute;
+                top: 55rpx;
+                right: 10rpx;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                color: #747479;
+            }
+
+            .tips {
+                position: absolute;
+                top: 0;
+                left: 10rpx;
+                font-size: 25rpx;
+                color: #747479;
+            }
+        }
+    }
+}
+
+.active-text {
+    color: #6467ef;
+}
+
+.inactive-text {
+    color: #000000;
 }

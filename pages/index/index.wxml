@@ -44,9 +44,42 @@
     <view class="btn-container" bindtap="handleBtnClick">
       <view>{{isBtnClick?"停止":"开始"}}</view>
     </view>
+    <view class="type-container">
+      <view class="type-box {{activeType==='random'?'active-text':'inactive-text'}}" data-type="random" bindtap="handleTypeClick">
+        <view>随便选</view>
+      </view>
+      <view class="type-box {{activeType==='home'?'active-text':'inactive-text'}}" data-type="home" bindtap="handleTypeClick">
+        <view>家常菜</view>
+      </view>
+      <view class="type-box {{activeType==='milkTea'?'active-text':'inactive-text'}}" data-type="milkTea" bindtap="handleTypeClick">
+        <view>奶茶类</view>
+      </view>
+      <view class="type-box {{activeType==='indulge'?'active-text':'inactive-text'}}" data-type="indulge" bindtap="handleTypeClick">
+        <view>放纵餐</view>
+      </view>
+    </view>
     <!-- 自定义菜单 -->
     <view class="options-container" bindtap="editHandler">
       <view>自定义菜单</view>
     </view>
   </view>
 </scroll-view>
+<view hidden="{{!isModalShow}}" class="modal">
+  <view class="modal-container">
+    <view class="modal-title-container">
+      <view>自定义编辑</view>
+    </view>
+    <view class="modal-textarea-container">
+      <textarea class="modal-textarea" bindblur="textareaBlur" value="{{textareaValue}}" maxlength="-1" auto-focus confirm-type="done" />
+    </view>
+    <view class="modal-btn-container">
+      <view class="modal-btn-confirm" bindtap="confirmHandler">
+        <view>确认</view>
+      </view>
+      <view class="modal-btn-reset">
+        <view>重置</view>
+      </view>
+      <view class="tips">请用空格分隔</view>
+    </view>
+  </view>
+</view>

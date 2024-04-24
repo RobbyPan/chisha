@@ -1,48 +1,26 @@
 // index.js
+import { arrayToString, stringToArray } from "../../utils/utils";
+import { homeFoodList, milkTeaList, indulgeFoodList } from "../../config.js";
 Page({
   data: {
     title: "看看今天吃啥呢？",
     isTitleShow: true,
     isBtnClick: false,
-    list: [
-      "红烧肉鹌鹑蛋",
-      "番茄土豆炖牛腩",
-      "梅菜扣肉",
-      "红烧猪蹄",
-      "红烧牛排骨",
-      "红烧肉",
-      "糖醋排骨",
-      "番茄炒蛋",
-      "酱油鸡",
-      "板栗焖鸡",
-      "蒜香鸡翅",
-      "蜜汁鸡腿",
-      "脆皮鸡翅",
-      "香煎带鱼",
-      "剁椒鱼头",
-      "红烧大黄鱼",
-      "清蒸鲈鱼",
-      "黄焖鸡",
-      "鱼香肉丝",
-      "京酱肉丝",
-      "青椒肉丝",
-      "奥尔良烤翅",
-      "小炒牛肉",
-      "可乐鸡翅",
-      "青椒酿虾滑",
-      "番茄粉丝虾滑汤",
-      "蒜蓉粉丝虾",
-      "凉拌皮蛋",
-      "柠檬鸡爪",
-      "凉拌黄瓜",
-      "粉丝蒸鲍鱼",
-    ],
+    list: [],
+    allList: [],
+    homeFoodList: [],
+    milkTeaList: [],
+    indulgeFoodList: [],
+    activeType: "random",
     randomItem: "疯狂星期四",
     randomTimer: null,
     clickCount: 0,
     toTakeOut: false,
     callMomFood: false,
+    isModalShow: false,
+    textareaValue: "",
   },
+
   /**
    * 处理按钮点击事件
    */
@@ -70,6 +48,7 @@ Page({
       }, 80),
     });
   },
+
   /**
    * 从列表中随机获取一个元素
    */
@@ -83,9 +62,102 @@ Page({
   },
 
   /**
+   * 类型选择
+   */
+  handleTypeClick(e) {
+    const { type } = e.currentTarget.dataset;
+    const { homeFoodList, milkTeaList, indulgeFoodList } = this.data;
+    this.setData({
+      allList: [].concat(homeFoodList, milkTeaList, indulgeFoodList),
+    });
+    const typeMap = {
+      random: this.data.allList,
+      home: homeFoodList,
+      milkTea: milkTeaList,
+      indulge: indulgeFoodList,
+    };
+    this.setData({
+      list: typeMap[type],
+      isTitleShow: true,
+      toTakeOut: false,
+      callMomFood: false,
+      randomItem: "疯狂星期四",
+      randomTimer: null,
+      isBtnClick: false,
+      activeType: type,
+    });
+  },
+
+  /**
    * 自定义菜单
    */
-  editHandler() {},
+  editHandler() {
+    const { activeType, allList, homeFoodList, milkTeaList, indulgeFoodList } =
+      this.data;
+    const typeMap = {
+      random: allList,
+      home: homeFoodList,
+      milkTea: milkTeaList,
+      indulge: indulgeFoodList,
+    };
+    const value = arrayToString(typeMap[activeType]);
+    //弹出框
+    this.setData({
+      textareaValue: value,
+      isModalShow: true,
+    });
+  },
+
+  /**
+   * textarea失焦
+   */
+  textareaBlur(e) {
+    const { value } = e.detail;
+    this.setData({
+      textareaValue: value,
+    });
+    console.log(value);
+  },
+
+  /**
+   * 自定义确认
+   */
+  confirmHandler() {
+    const { textareaValue, activeType } = this.data;
+    const dataList = stringToArray(textareaValue);
+    const typeMap = {
+      random: () => {
+        this.setData({
+          allList: dataList,
+        });
+      },
+      home: () => {
+        this.setData({
+          homeFoodList: dataList,
+        });
+      },
+      milkTea: () => {
+        this.setData({
+          milkTeaList: dataList,
+        });
+      },
+      indulge: () => {
+        this.setData({
+          indulgeFoodList: dataList,
+        });
+      },
+    };
+    typeMap[activeType]();
+    this.setData({
+      list: {
+        random: this.data.allList,
+        home: this.data.homeFoodList,
+        milkTea: this.data.milkTeaList,
+        indulge: this.data.indulgeFoodList,
+      }[activeType],
+      isModalShow: false,
+    });
+  },
 
   /**
    * 跳转bilibili小程序
@@ -107,6 +179,7 @@ Page({
       });
     }, 2000);
   },
+
   /**
    * 跳转小红书
    */
@@ -127,6 +200,7 @@ Page({
       });
     }, 2000);
   },
+
   /**
    * 跳转美团
    */
@@ -154,6 +228,7 @@ Page({
       });
     }, 2000);
   },
+
   /**
    * 跳转腾讯地图小程序
    */
@@ -174,8 +249,9 @@ Page({
       });
     }, 2000);
   },
+
   /**
-   * 初始状态
+   * 恢复初始状态
    */
   reset() {
     this.setData({
@@ -188,10 +264,30 @@ Page({
       isBtnClick: false,
     });
   },
-  onLoad() {},
+
+  /*******************生命周期*********************/
+
+  onLoad() {
+    this.setData({
+      allList: [].concat(homeFoodList, milkTeaList, indulgeFoodList),
+      homeFoodList,
+      milkTeaList,
+      indulgeFoodList,
+    });
+    this.setData({
+      list: {
+        random: this.data.allList,
+        home: this.data.homeFoodList,
+        milkTea: this.data.milkTeaList,
+        indulge: this.data.indulgeFoodList,
+      }[this.data.activeType],
+    });
+  },
+
   onShow() {
     this.reset();
   },
+
   /**
    * 转发给朋友
    */
@@ -201,6 +297,7 @@ Page({
       path: "/pages/index/index",
     };
   },
+
   /**
    * 转发到朋友圈
    */
