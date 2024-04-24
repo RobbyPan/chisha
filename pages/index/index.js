@@ -265,6 +265,22 @@ Page({
     });
   },
 
+  /**
+   * 复制我的微信号
+   */
+  callMe() {
+    wx.setClipboardData({
+      data: "miaopasia",
+      success() {
+        wx.showToast({
+          title: "已复制到剪贴板",
+          icon: "none",
+          duration: 2000,
+        });
+      },
+    });
+  },
+
   /*******************生命周期*********************/
 
   onLoad() {
