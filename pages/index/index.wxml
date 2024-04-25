@@ -97,7 +97,7 @@
       <view class="modal-btn-confirm" bindtap="confirmHandler">
         <view>确认</view>
       </view>
-      <view class="modal-btn-reset">
+      <view class="modal-btn-reset" bindtap="editResetHandler">
         <view>重置</view>
       </view>
       <view class="tips">请用空格分隔</view>

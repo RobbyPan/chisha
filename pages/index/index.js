@@ -166,6 +166,22 @@ Page({
   },
 
   /**
+   * 自定义重置
+   */
+  editResetHandler() {
+    const { activeType } = this.data;
+    const typeMap = {
+      random: [].concat(homeFoodList, indulgeFoodList),
+      home: homeFoodList,
+      milkTea: milkTeaList,
+      indulge: indulgeFoodList,
+    };
+    this.setData({
+      textareaValue: arrayToString(typeMap[activeType]),
+    });
+  },
+
+  /**
    * 跳转bilibili小程序
    */
   gotoBilibili() {
