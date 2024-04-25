@@ -1,6 +1,11 @@
 // index.js
 import { arrayToString, stringToArray } from "../../utils/utils";
-import { homeFoodList, milkTeaList, indulgeFoodList } from "../../config.js";
+import {
+  homeFoodList,
+  milkTeaList,
+  indulgeFoodList,
+  elementPath,
+} from "../../config.js";
 Page({
   data: {
     title: "看看今天吃啥呢？",
@@ -267,7 +272,7 @@ Page({
     setTimeout(() => {
       wx.navigateToMiniProgram({
         appId: "wxece3a9a4c82f58c9",
-        path: "ele-recommend-price/pages/guest/index?inviterId=eb3ee92&chInfo=ch_wechat_chsub_CopyLink&_ltracker_f=grzx0913",
+        path: elementPath,
       });
     }, 2000);
   },

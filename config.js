@@ -1,4 +1,11 @@
 /**
+ * 饿了么链接
+ */
+const elementPath =
+  "pages/sharePid/web/index?o2i_sharefrom=wxminiapp&scene=u.ele.me%2Fidf4UiIo"; //饿了么红包领不停-升级版
+// "ele-recommend-price/pages/guest/index?inviterId=eb3ee92&chInfo=ch_wechat_chsub_CopyLink&_ltracker_f=grzx0913" //饿了么个人分享红包链接
+
+/**
  * 家常菜
  */
 const homeFoodList = [
@@ -174,4 +181,4 @@ const indulgeFoodList = [
   "不素之霸双层牛堡",
 ];
 
-export { homeFoodList, milkTeaList, indulgeFoodList };
+export { homeFoodList, milkTeaList, indulgeFoodList, elementPath };

@@ -51,7 +51,7 @@
   align-items: center;
   flex-wrap: wrap;
   width: 80vw;
-  font-size: 28rpx;
+  font-size: 35rpx;
   position: absolute;
   bottom: 20rpx;
 }
