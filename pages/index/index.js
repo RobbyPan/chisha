@@ -168,16 +168,7 @@ Page({
    * 跳转bilibili小程序
    */
   gotoBilibili() {
-    wx.setClipboardData({
-      data: this.data.randomItem,
-      success() {
-        wx.showToast({
-          title: "已复制到剪贴板",
-          icon: "none",
-          duration: 2000,
-        });
-      },
-    });
+    this.copyFood();
     setTimeout(() => {
       wx.navigateToMiniProgram({
         appId: "wx7564fd5313d24844",
@@ -189,16 +180,7 @@ Page({
    * 跳转小红书
    */
   gotoRedbook() {
-    wx.setClipboardData({
-      data: this.data.randomItem,
-      success() {
-        wx.showToast({
-          title: "已复制到剪贴板",
-          icon: "none",
-          duration: 2000,
-        });
-      },
-    });
+    this.copyFood();
     setTimeout(() => {
       wx.navigateToMiniProgram({
         appId: "wxb296433268a1c654",
@@ -207,30 +189,41 @@ Page({
   },
 
   /**
+   * 跳转美团不复制剪切板
+   */
+  gotoMeituanNoCopy() {
+    wx.navigateToMiniProgram({
+      appId: "wx2c348cf579062e56",
+    });
+  },
+
+  /**
    * 跳转美团
    */
   gotoMeituan() {
-    wx.setClipboardData({
-      data: this.data.randomItem,
-      success() {
-        wx.showToast({
-          title: "已复制到剪贴板",
-          icon: "none",
-          duration: 2000,
-        });
-      },
-    });
-    // 跳转美团推广页
-    // setTimeout(() => {
-    //   wx.navigateTo({
-    //     url: `/pages/web/web`,
-    //   });
-    // }, 2000);
-    // 跳转美团小程序
+    this.copyFood();
     setTimeout(() => {
-      wx.navigateToMiniProgram({
-        appId: "wx2c348cf579062e56",
-      });
+      this.gotoMeituanNoCopy();
+    }, 2000);
+  },
+
+  /**
+   * 跳转饿了么小程序不复制剪切板
+   */
+  gotoElemeNoCopy() {
+    wx.navigateToMiniProgram({
+      appId: "wxece3a9a4c82f58c9",
+      path: elementPath,
+    });
+  },
+
+  /**
+   * 跳转饿了么小程序
+   */
+  gotoEleme() {
+    this.copyFood();
+    setTimeout(() => {
+      this.gotoElemeNoCopy();
     }, 2000);
   },
 
@@ -238,16 +231,7 @@ Page({
    * 跳转腾讯地图小程序
    */
   gotoMap() {
-    wx.setClipboardData({
-      data: this.data.randomItem,
-      success() {
-        wx.showToast({
-          title: "已复制到剪贴板",
-          icon: "none",
-          duration: 2000,
-        });
-      },
-    });
+    this.copyFood();
     setTimeout(() => {
       wx.navigateToMiniProgram({
         appId: "wx7643d5f831302ab0",
@@ -256,9 +240,9 @@ Page({
   },
 
   /**
-   * 跳转饿了么小程序
+   * 复制随机到的food到剪切板
    */
-  gotoEleme() {
+  copyFood() {
     wx.setClipboardData({
       data: this.data.randomItem,
       success() {
@@ -269,12 +253,6 @@ Page({
         });
       },
     });
-    setTimeout(() => {
-      wx.navigateToMiniProgram({
-        appId: "wxece3a9a4c82f58c9",
-        path: elementPath,
-      });
-    }, 2000);
   },
 
   /**

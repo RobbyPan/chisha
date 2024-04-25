@@ -1,78 +1,90 @@
 <!-- index.wxml -->
 <navigation-bar title="Weixin" back="{{false}}" color="black" background="#FFF"></navigation-bar>
-<scroll-view class="scrollarea" scroll-y type="list">
-  <view class="container">
-    <view class="main-container">
-      <!-- logo -->
-      <view class="logo">
-        <image src="../../images/logo.png"></image>
+<view class="container">
+  <view class="main-container">
+    <!-- logo -->
+    <view class="logo">
+      <image src="../../images/logo.png"></image>
+    </view>
+    <!-- 主要文字等 -->
+    <view class="title-container">
+      <view wx:if="{{isTitleShow}}">{{title}}</view>
+      <view wx:if="{{!isTitleShow&&!callMomFood}}">今天吃{{randomItem}}吧！</view>
+      <view wx:if="{{callMomFood}}">给咱妈说回家吃吧！</view>
+    </view>
+    <!-- 各种链接跳转 -->
+    <view wx:if="{{!isBtnClick&&!isTitleShow&&!toTakeOut&&!callMomFood}}" class="links-container">
+      <view class="links-box" bindtap="gotoBilibili">
+        <image src="../../images/bilibili.png"></image>
+        <view>搜教程</view>
       </view>
-      <!-- 主要文字等 -->
-      <view class="title-container">
-        <view wx:if="{{isTitleShow}}">{{title}}</view>
-        <view wx:if="{{!isTitleShow&&!callMomFood}}">今天吃{{randomItem}}吧！</view>
-        <view wx:if="{{callMomFood}}">给咱妈说回家吃吧！</view>
+      <view class="links-box" bindtap="gotoMeituan">
+        <image src="../../images/meituan.png"></image>
+        <view>点外卖</view>
       </view>
-      <!-- 各种链接跳转 -->
-      <view wx:if="{{!isBtnClick&&!isTitleShow&&!toTakeOut&&!callMomFood}}" class="links-container">
-        <view class="links-box" bindtap="gotoBilibili">
-          <image src="../../images/bilibili.png"></image>
-          <view>搜教程</view>
-        </view>
-        <view class="links-box" bindtap="gotoMeituan">
-          <image src="../../images/meituan.png"></image>
-          <view>点外卖</view>
-        </view>
-        <view class="links-box" bindtap="gotoRedbook">
-          <image src="../../images/xiaohongshu.png"></image>
-          <view>看分享</view>
-        </view>
-        <view class="links-box" bindtap="gotoEleme">
-          <image src="../../images/eleme.png"></image>
-          <view>领红包</view>
-        </view>
+      <view class="links-box" bindtap="gotoRedbook">
+        <image src="../../images/xiaohongshu.png"></image>
+        <view>看分享</view>
       </view>
-      <!-- 美团链接跳转 -->
-      <view wx:if="{{toTakeOut}}" class="meitaun-container">
-        <view class="links-box" bindtap="gotoMeituan">
-          <image src="../../images/meituan.png"></image>
-          <view>要不点外卖试试？</view>
-        </view>
-        <view class="links-box" bindtap="gotoEleme">
-          <image src="../../images/eleme.png"></image>
-          <view>要不点外卖试试？</view>
-        </view>
+      <view class="links-box" bindtap="gotoEleme">
+        <image src="../../images/eleme.png"></image>
+        <view>领红包</view>
       </view>
     </view>
-    <!-- 开始按钮 -->
-    <view class="btn-container" bindtap="handleBtnClick">
-      <view>{{isBtnClick?"停止":"开始"}}</view>
-    </view>
-    <view class="type-container">
-      <view class="type-box {{activeType==='random'?'active-text':'inactive-text'}}" data-type="random" bindtap="handleTypeClick">
-        <view>随便选</view>
+    <!-- 美团链接跳转 -->
+    <view wx:if="{{toTakeOut}}" class="meitaun-container">
+      <view class="links-box" bindtap="gotoMeituan">
+        <image src="../../images/meituan.png"></image>
+        <view>要不点外卖试试？</view>
       </view>
-      <view class="type-box {{activeType==='home'?'active-text':'inactive-text'}}" data-type="home" bindtap="handleTypeClick">
-        <view>家常菜</view>
+      <view class="links-box" bindtap="gotoEleme">
+        <image src="../../images/eleme.png"></image>
+        <view>要不点外卖试试？</view>
       </view>
-      <view class="type-box {{activeType==='milkTea'?'active-text':'inactive-text'}}" data-type="milkTea" bindtap="handleTypeClick">
-        <view>奶茶类</view>
-      </view>
-      <view class="type-box {{activeType==='indulge'?'active-text':'inactive-text'}}" data-type="indulge" bindtap="handleTypeClick">
-        <view>放纵餐</view>
-      </view>
-    </view>
-    <!-- 自定义菜单 -->
-    <view class="options-container" bindtap="editHandler">
-      <view>自定义菜单</view>
-    </view>
-    <!-- footer联系开发者 -->
-    <view class="footer">
-      <view>有疑问联系开发者：</view>
-      <view class="copy" bindtap="callMe">点击复制微信号</view>
     </view>
   </view>
-</scroll-view>
+  <!-- 开始按钮 -->
+  <view class="btn-container" bindtap="handleBtnClick">
+    <view>{{isBtnClick?"停":"随机选"}}</view>
+  </view>
+  <view class="type-container">
+    <view class="type-box {{activeType==='random'?'active-text':'inactive-text'}}" data-type="random" bindtap="handleTypeClick">
+      <view>随便选</view>
+    </view>
+    <view class="type-box {{activeType==='home'?'active-text':'inactive-text'}}" data-type="home" bindtap="handleTypeClick">
+      <view>家常菜</view>
+    </view>
+    <view class="type-box {{activeType==='milkTea'?'active-text':'inactive-text'}}" data-type="milkTea" bindtap="handleTypeClick">
+      <view>奶茶类</view>
+    </view>
+    <view class="type-box {{activeType==='indulge'?'active-text':'inactive-text'}}" data-type="indulge" bindtap="handleTypeClick">
+      <view>放纵餐</view>
+    </view>
+  </view>
+  <!-- 自定义菜单 -->
+  <view class="options-container" bindtap="editHandler">
+    <view>自定义菜单</view>
+  </view>
+  <!-- 外卖红包入口 -->
+  <view class="takeout-container">
+    <view class="hongbao-title">领红包</view>
+    <view class="hongbao-container">
+      <view class="meituan-box hongbao-box" bindtap="gotoMeituanNoCopy">
+        <view>美团</view>
+        <image src="../../images/meituan.png"></image>
+      </view>
+      <view class="eleme-box hongbao-box" bindtap="gotoElemeNoCopy">
+        <view>饿了么</view>
+        <image src="../../images/eleme.png"></image>
+      </view>
+    </view>
+  </view>
+  <!-- footer联系开发者 -->
+  <view class="footer">
+    <view>有疑问联系开发者：</view>
+    <view class="copy" bindtap="callMe">点击复制微信号</view>
+  </view>
+</view>
 <view hidden="{{!isModalShow}}" class="modal">
   <view class="modal-container">
     <view class="modal-title-container">
