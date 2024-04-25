@@ -8,7 +8,6 @@ import {
 } from "../../config.js";
 Page({
   data: {
-    title: "看看今天吃啥呢？",
     isTitleShow: true,
     isBtnClick: false,
     list: [],
@@ -24,6 +23,7 @@ Page({
     callMomFood: false,
     isModalShow: false,
     textareaValue: "",
+    isDrink: false,
   },
 
   /**
@@ -73,7 +73,7 @@ Page({
     const { type } = e.currentTarget.dataset;
     const { homeFoodList, milkTeaList, indulgeFoodList } = this.data;
     this.setData({
-      allList: [].concat(homeFoodList, milkTeaList, indulgeFoodList),
+      allList: [].concat(homeFoodList, indulgeFoodList),
     });
     const typeMap = {
       random: this.data.allList,
@@ -90,6 +90,7 @@ Page({
       randomTimer: null,
       isBtnClick: false,
       activeType: type,
+      isDrink: type === "milkTea",
     });
   },
 
@@ -290,7 +291,7 @@ Page({
 
   onLoad() {
     this.setData({
-      allList: [].concat(homeFoodList, milkTeaList, indulgeFoodList),
+      allList: [].concat(homeFoodList, indulgeFoodList),
       homeFoodList,
       milkTeaList,
       indulgeFoodList,
