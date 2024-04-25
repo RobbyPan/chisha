@@ -5,6 +5,7 @@ import {
   milkTeaList,
   indulgeFoodList,
   elementPath,
+  meituanPath,
 } from "../../config.js";
 Page({
   data: {
@@ -210,7 +211,8 @@ Page({
    */
   gotoMeituanNoCopy() {
     wx.navigateToMiniProgram({
-      appId: "wx2c348cf579062e56",
+      appId: "wxde8ac0a21135c07d",
+      path: meituanPath,
     });
   },
 

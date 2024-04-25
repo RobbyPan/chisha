@@ -6,6 +6,12 @@ const elementPath =
 // "ele-recommend-price/pages/guest/index?inviterId=eb3ee92&chInfo=ch_wechat_chsub_CopyLink&_ltracker_f=grzx0913" //饿了么个人分享红包链接
 
 /**
+ * 美团链接
+ */
+const meituanPath =
+  "index/pages/h5/h5?noshare=1&f_openId=0&weburl=https%3A%2F%2Fclick.meituan.com%2Ft%3Ft%3D1%26c%3D2%26p%3DF8_gxb5zT9HA&f_userId=0&f_token=0";
+
+/**
  * 家常菜
  */
 const homeFoodList = [
@@ -181,4 +187,4 @@ const indulgeFoodList = [
   "不素之霸牛堡",
 ];
 
-export { homeFoodList, milkTeaList, indulgeFoodList, elementPath };
+export { homeFoodList, milkTeaList, indulgeFoodList, elementPath, meituanPath };
