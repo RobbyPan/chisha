@@ -28,7 +28,7 @@
       </view>
       <view class="links-box" bindtap="gotoEleme">
         <image src="../../images/eleme.png"></image>
-        <view>领红包</view>
+        <view>点外卖</view>
       </view>
     </view>
     <!-- 美团链接跳转 -->
