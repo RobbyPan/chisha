@@ -180,10 +180,9 @@
 }
 .modal .modal-container {
   width: 80vw;
-  height: 65vh;
   background-color: #fff;
   border-radius: 40rpx;
-  padding: 20rpx 20rpx;
+  padding: 20rpx 20rpx 0 20rpx;
 }
 .modal .modal-container .modal-title-container {
   display: flex;
@@ -211,7 +210,7 @@
   justify-content: center;
   align-items: center;
   width: 100%;
-  padding: 50rpx 0;
+  padding: 50rpx 0 30rpx 0;
   position: relative;
 }
 .modal .modal-container .modal-btn-container .modal-btn-confirm {
@@ -225,9 +224,10 @@
   align-items: center;
 }
 .modal .modal-container .modal-btn-container .modal-btn-reset {
+  height: 100%;
   position: absolute;
-  top: 55rpx;
-  right: 10rpx;
+  right: 0;
+  padding-right: 20rpx;
   display: flex;
   justify-content: center;
   align-items: center;
