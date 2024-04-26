@@ -1,5 +1,5 @@
 // index.js
-import { arrayToString, stringToArray } from "../../utils/utils";
+import { arrayToString, stringToArray, getTime } from "../../utils/utils";
 import {
   homeFoodList,
   milkTeaList,
@@ -17,7 +17,13 @@ Page({
     milkTeaList: [],
     indulgeFoodList: [],
     activeType: "random",
-    randomItem: "疯狂星期四",
+    // randomItem: "疯狂星期四",
+    randomItem: {
+      name: "疯狂星期四",
+      type: "random",
+      time: "2077-05-20 20:13:14:",
+    },
+    randomItemList: [],
     randomTimer: null,
     clickCount: 0,
     toTakeOut: false,
@@ -25,6 +31,9 @@ Page({
     isModalShow: false,
     textareaValue: "",
     isDrink: false,
+
+    historyTop: 60,
+    historyHeight: 60,
   },
 
   /**
@@ -41,6 +50,17 @@ Page({
       clearInterval(this.data.randomTimer);
       this.setData({
         isBtnClick: false,
+        randomItemList: this.data.randomItemList.concat([
+          {
+            name: this.data.randomItem.name,
+            type: this.data.randomItem.type,
+            time: getTime(),
+          },
+        ]),
+      });
+      wx.setStorage({
+        key: "randomItemList",
+        data: this.data.randomItemList,
       });
       return;
     }
@@ -59,11 +79,20 @@ Page({
    * 从列表中随机获取一个元素
    */
   getRandomFromList() {
-    const { list } = this.data;
+    const { list, activeType } = this.data;
+    const typeMap = {
+      random: "随便选",
+      home: "家常菜",
+      milkTea: "奶茶类",
+      indulge: "放纵餐",
+    };
     const randomIndex = Math.floor(Math.random() * list.length);
-    const randomItem = list[randomIndex];
+    const name = list[randomIndex];
     this.setData({
-      randomItem,
+      randomItem: {
+        name: name,
+        type: typeMap[activeType],
+      },
     });
   },
 
@@ -87,7 +116,10 @@ Page({
       isTitleShow: true,
       toTakeOut: false,
       callMomFood: false,
-      randomItem: "疯狂星期四",
+      randomItem: {
+        name: "疯狂星期四",
+        type: "random",
+      },
       randomTimer: null,
       isBtnClick: false,
       activeType: type,
@@ -263,7 +295,7 @@ Page({
    */
   copyFood() {
     wx.setClipboardData({
-      data: this.data.randomItem,
+      data: this.data.randomItem.name,
       success() {
         wx.showToast({
           title: "已复制到剪贴板",
@@ -283,7 +315,10 @@ Page({
       clickCount: 0,
       toTakeOut: false,
       callMomFood: false,
-      randomItem: "疯狂星期四",
+      randomItem: {
+        name: "疯狂星期四",
+        type: "random",
+      },
       randomTimer: null,
       isBtnClick: false,
     });
@@ -305,10 +340,19 @@ Page({
     });
   },
 
+  /**
+   * 跳转历史页面
+   */
+  toHistory() {
+    wx.navigateTo({
+      url: "../history/history",
+    });
+  },
   /*******************生命周期*********************/
 
   onLoad() {
     this.setData({
+      randomItemList: wx.getStorageSync("randomItemList") || [],
       allList: [].concat(homeFoodList, indulgeFoodList),
       homeFoodList,
       milkTeaList,
@@ -321,6 +365,12 @@ Page({
         milkTea: this.data.milkTeaList,
         indulge: this.data.indulgeFoodList,
       }[this.data.activeType],
+    });
+
+    const ButtonBoundingClient = wx.getMenuButtonBoundingClientRect();
+    this.setData({
+      historyTop: ButtonBoundingClient.top,
+      historyHeight: ButtonBoundingClient.height,
     });
   },
 

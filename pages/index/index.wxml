@@ -1,6 +1,9 @@
 <!-- index.wxml -->
-<navigation-bar title="Weixin" back="{{false}}" color="black" background="#FFF"></navigation-bar>
 <view class="container">
+  <view class="history-container" bindtap="toHistory" style="top:{{historyTop}}px;height:{{historyHeight}}px">
+    <image src="../../images/history.png"></image>
+    <view>历史记录</view>
+  </view>
   <view class="main-container">
     <!-- logo -->
     <view class="logo">
@@ -9,7 +12,7 @@
     <!-- 主要文字等 -->
     <view class="title-container">
       <view wx:if="{{isTitleShow}}">看看今天{{isDrink?"喝":"吃"}}啥呢？</view>
-      <view wx:if="{{!isTitleShow&&!callMomFood}}">今天{{isDrink?"喝":"吃"}}{{randomItem}}吧！</view>
+      <view wx:if="{{!isTitleShow&&!callMomFood}}">今天{{isDrink?"喝":"吃"}}{{randomItem.name}}吧！</view>
       <view wx:if="{{callMomFood}}">给咱妈说回家吃吧！</view>
     </view>
     <!-- 各种链接跳转 -->

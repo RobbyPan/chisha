@@ -1,11 +1,12 @@
 {
   "pages": [
     "pages/index/index",
-    "pages/web/web"
+    "pages/web/web",
+    "pages/history/history"
   ],
   "window": {
     "navigationBarTextStyle": "black",
-    "navigationStyle": "custom"
+    "navigationBarBackgroundColor": "#ffffff"
   },
   "style": "v2",
   "renderer": "webview",

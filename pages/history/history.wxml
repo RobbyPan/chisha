@@ -1,0 +1,15 @@
+<view class="history-container">
+    <scroll-view wx:if="{{!!list&&list.length>0}}" class="history-scroll-container" scroll-y enhanced show-scrollbar="{{false}}">
+        <view class="history-item" wx:for="{{list}}" wx:key="time">
+            <view class="card-top-box">
+                <view class="card-type-box">{{item.type}}</view>
+                <view class="card-time-box">{{item.time}}</view>
+            </view>
+            <view class="line"></view>
+            <view class="card-text-box">
+                <view>{{item.name}}</view>
+            </view>
+        </view>
+    </scroll-view>
+    <view wx:else>没有历史记录喔，快去抽抽看吧</view>
+</view>
