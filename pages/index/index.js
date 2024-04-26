@@ -40,6 +40,9 @@ Page({
    * 处理按钮点击事件
    */
   handleBtnClick() {
+    wx.vibrateShort({
+      type: "heavy",
+    });
     this.setData({
       isTitleShow: false,
       clickCount: this.data.clickCount > 10 ? 0 : this.data.clickCount,
