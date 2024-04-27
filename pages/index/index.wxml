@@ -6,7 +6,7 @@
   </view>
   <view class="main-container">
     <!-- logo -->
-    <view class="logo">
+    <view class="logo" bindtap="remindToEatHandler">
       <image src="../../images/logo.png"></image>
     </view>
     <!-- 主要文字等 -->

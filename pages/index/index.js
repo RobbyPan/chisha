@@ -17,9 +17,9 @@ Page({
     milkTeaList: [],
     indulgeFoodList: [],
     activeType: "random",
-    // randomItem: "疯狂星期四",
+    // randomItem: "",
     randomItem: {
-      name: "疯狂星期四",
+      name: "",
       type: "random",
       time: "2077-05-20 20:13:14:",
     },
@@ -120,7 +120,7 @@ Page({
       toTakeOut: false,
       callMomFood: false,
       randomItem: {
-        name: "疯狂星期四",
+        name: "",
         type: "random",
       },
       randomTimer: null,
@@ -319,11 +319,26 @@ Page({
       toTakeOut: false,
       callMomFood: false,
       randomItem: {
-        name: "疯狂星期四",
+        name: "",
         type: "random",
       },
       randomTimer: null,
       isBtnClick: false,
+    });
+  },
+
+  /**
+   * 提醒我吃饭
+   */
+  remindToEatHandler() {
+    const { randomItem, isDrink } = this.data;
+    wx.addPhoneCalendar({
+      title: !!randomItem.name
+        ? `该${isDrink ? "喝水" : "吃饭"}啦，今天${isDrink ? "喝" : "吃"}${
+            randomItem.name
+          }吧！`
+        : `该${isDrink ? "喝水" : "吃饭"}啦`,
+      startTime: Math.round(new Date().getTime() / 1000), //unix时间戳
     });
   },
 
@@ -351,6 +366,7 @@ Page({
       url: "../history/history",
     });
   },
+
   /*******************生命周期*********************/
 
   onLoad() {
