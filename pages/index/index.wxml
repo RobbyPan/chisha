@@ -4,6 +4,10 @@
     <image src="../../images/history.png"></image>
     <view>历史记录</view>
   </view>
+  <button open-type="share" class="share-btn" style="width:{{menuButtonWidth}}px;height:{{historyHeight}}px;top:{{historyTop+historyHeight+10}}px;left:{{menuButtonLeft}}px;">
+    <image src="../../images/share.png"></image>
+    <view>分享</view>
+  </button>
   <view class="main-container">
     <!-- logo -->
     <view class="logo" bindtap="remindToEatHandler">

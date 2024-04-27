@@ -32,8 +32,10 @@ Page({
     textareaValue: "",
     isDrink: false,
 
-    historyTop: 60,
-    historyHeight: 60,
+    historyTop: 60, // 历史记录顶部距离页面顶部的距离
+    historyHeight: 60, // 历史记录的高度
+    menuButtonWidth: 60, // ...菜单按钮宽度
+    menuButtonLeft: 280, // ...菜单按钮距离页面左边的距离
   },
 
   /**
@@ -390,6 +392,8 @@ Page({
     this.setData({
       historyTop: ButtonBoundingClient.top,
       historyHeight: ButtonBoundingClient.height,
+      menuButtonWidth: ButtonBoundingClient.width,
+      menuButtonLeft: ButtonBoundingClient.left,
     });
   },
 
