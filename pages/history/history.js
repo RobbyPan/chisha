@@ -17,6 +17,23 @@ Page({
   },
 
   /**
+   * 复制到剪切板
+   */
+  copyItem(e) {
+    const { item } = e.currentTarget.dataset;
+    wx.setClipboardData({
+      data: item.name,
+      success() {
+        wx.showToast({
+          title: "已复制到剪贴板",
+          icon: "none",
+          duration: 1000,
+        });
+      },
+    });
+  },
+
+  /**
    * 生命周期函数--监听页面初次渲染完成
    */
   onReady() {},

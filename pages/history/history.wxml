@@ -6,7 +6,7 @@
                 <view class="card-time-box">{{item.time}}</view>
             </view>
             <view class="line"></view>
-            <view class="card-text-box">
+            <view class="card-text-box" bindtap="copyItem" data-item="{{item}}">
                 <view>{{item.name}}</view>
             </view>
         </view>
