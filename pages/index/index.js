@@ -105,6 +105,10 @@ Page({
    * 类型选择
    */
   handleTypeClick(e) {
+    // 如果存在定时器则关闭
+    if (this.data.randomTimer) {
+      clearInterval(this.data.randomTimer);
+    }
     const { type } = e.currentTarget.dataset;
     const { homeFoodList, milkTeaList, indulgeFoodList } = this.data;
     this.setData({
