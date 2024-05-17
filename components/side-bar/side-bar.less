@@ -1,0 +1,116 @@
+/* components/side-bar/side-bar.wxss */
+.side-bar {
+    .side-bar-icon {
+        width: 60rpx;
+        height: 60rpx;
+        border-radius: 10rpx;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        background-color: #fff;
+        box-shadow: 5px 5px 10px #ebebeb, -5px -5px 10px #ffffff;
+
+        .icon {
+            width: 30rpx;
+            height: 30rpx;
+        }
+    }
+
+    .side-bar-content-box {
+        .side-bar-content {
+            width: 25vw;
+            height: 90vh;
+            position: fixed;
+            top: 5vh;
+            left: 10rpx;
+            background-color: #fff;
+            border-radius: 30rpx;
+            box-sizing: border-box;
+            padding: 50rpx 10rpx;
+            z-index: 11;
+
+        }
+
+        .left-slide {
+            animation: left-slide 0.3s ease-in-out;
+        }
+
+        .right-slide {
+            animation: right-slide 0.3s ease-in-out;
+        }
+
+        @keyframes left-slide {
+            0% {
+                left: -25vw;
+            }
+
+            100% {
+                left: 10rpx;
+            }
+        }
+
+        @keyframes right-slide {
+            0% {
+                left: 10rpx;
+            }
+
+            100% {
+                left: -25vw;
+            }
+        }
+
+        .side-bar-item-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            width: 100%;
+            height: 100rpx;
+            border-radius: 30rpx;
+        }
+
+        .side-bar-item-active {
+            background-color: rgba(89, 173, 248, 0.2);
+        }
+
+
+        .mask {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.2);
+            z-index: 10;
+        }
+
+        .fade-in {
+            animation: fade-in 0.3s ease-in-out;
+        }
+
+        .fade-out {
+            animation: fade-out 0.3s ease-in-out;
+        }
+
+        @keyframes fade-in {
+            0% {
+                opacity: 0;
+            }
+
+            100% {
+                opacity: 1;
+            }
+        }
+
+        @keyframes fade-out {
+            0% {
+                opacity: 1;
+            }
+
+            100% {
+                opacity: 0;
+            }
+        }
+
+    }
+}

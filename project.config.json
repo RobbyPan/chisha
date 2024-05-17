@@ -13,7 +13,11 @@
       "disablePlugins": [],
       "outputPath": ""
     },
-    "ignoreUploadUnusedFiles": true
+    "ignoreUploadUnusedFiles": true,
+    "useCompilerPlugins": [
+      "typescript",
+      "less"
+    ]
   },
   "condition": {},
   "editorSetting": {

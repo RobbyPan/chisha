@@ -1,8 +1,11 @@
 <!-- index.wxml -->
 <view class="container">
-  <view class="history-container" bindtap="toHistory" style="top:{{historyTop}}px;height:{{historyHeight}}px">
+  <!-- <view class="history-container" bindtap="toHistory" style="top:{{historyTop}}px;height:{{historyHeight}}px">
     <image src="../../images/history.png"></image>
     <view>历史记录</view>
+  </view> -->
+  <view class="menu-container" style="top:{{historyTop}}px;height:{{historyHeight}}px;">
+    <side-bar></side-bar>
   </view>
   <button open-type="share" class="share-btn" style="width:{{menuButtonWidth}}px;height:{{historyHeight}}px;top:{{historyTop+historyHeight+10}}px;left:{{menuButtonLeft}}px;">
     <image src="../../images/share.png"></image>
