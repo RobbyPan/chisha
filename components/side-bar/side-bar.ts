@@ -1,4 +1,5 @@
 // components/side-bar/side-bar.ts
+declare var wx: any;
 import {
   menuList
 } from "../../config";
@@ -63,6 +64,16 @@ Component({
       const { activeItem } = this.data;
       this.triggerEvent('getMenuItem', {
         menuItem: activeItem
+      })
+    },
+    /**
+     * 跳转历史记录页面
+     */
+
+    goHistoryPage() {
+      this.toggleSideBar()
+      wx.navigateTo({
+        url: '/pages/history/history',
       })
     }
   },
