@@ -1,13 +1,6 @@
 // index.js
 import { arrayToString, stringToArray, getTime } from "../../utils/utils";
-import {
-  homeFoodList,
-  milkTeaList,
-  indulgeFoodList,
-  elementPath,
-  meituanPath,
-  menuList,
-} from "../../config";
+import { elementPath, meituanPath, menuList } from "../../config";
 Page({
   data: {
     isTitleShow: true,
@@ -48,6 +41,9 @@ Page({
    * 获取菜单列表
    */
   getMenuItem(data) {
+    if (this.data.randomTimer) {
+      clearInterval(this.data.randomTimer);
+    }
     const { menuItem } = data.detail;
     this.setData({
       menuItem: {
@@ -331,22 +327,6 @@ Page({
   /*******************生命周期*********************/
 
   onLoad() {
-    this.setData({
-      randomItemList: wx.getStorageSync("randomItemList") || [],
-      allList: [].concat(homeFoodList, indulgeFoodList),
-      homeFoodList,
-      milkTeaList,
-      indulgeFoodList,
-    });
-    this.setData({
-      list: {
-        random: this.data.allList,
-        home: this.data.homeFoodList,
-        milkTea: this.data.milkTeaList,
-        indulge: this.data.indulgeFoodList,
-      }[this.data.activeType],
-    });
-
     const ButtonBoundingClient = wx.getMenuButtonBoundingClientRect();
     this.setData({
       historyTop: ButtonBoundingClient.top,
