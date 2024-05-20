@@ -329,6 +329,7 @@ Page({
   onLoad() {
     const ButtonBoundingClient = wx.getMenuButtonBoundingClientRect();
     this.setData({
+      randomItemList: wx.getStorageSync("randomItemList") || [],
       historyTop: ButtonBoundingClient.top,
       historyHeight: ButtonBoundingClient.height,
       menuButtonWidth: ButtonBoundingClient.width,

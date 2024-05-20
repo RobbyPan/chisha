@@ -353,13 +353,13 @@ const menuList: menu[] = [
     label: "奶茶类",
     type: "喝",
     id: "3",
-    list: arrayToString(milkTeaList),
+    list: arrayToString(milkTeaList.concat(LuckinCoffee)),
   },
   {
     label: "放纵餐",
     type: "吃",
     id: "4",
-    list: arrayToString(indulgeFoodList),
+    list: arrayToString(indulgeFoodList.concat(MDL, KFC)),
   },
   {
     label: "M当劳",
