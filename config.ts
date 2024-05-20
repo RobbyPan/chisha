@@ -1,3 +1,5 @@
+import { arrayToString } from "./utils/utils";
+
 /**
  * 饿了么链接
  */
@@ -192,4 +194,41 @@ const indulgeFoodList = [
   "不素之霸牛堡",
 ];
 
-export { homeFoodList, milkTeaList, indulgeFoodList, elementPath, meituanPath };
+interface menu {
+  label: string;
+  type: string;
+  id: string;
+  list: string;
+}
+
+/**
+ * 菜单
+ */
+const menuList: menu[] = [
+  {
+    label: '随便选',
+    type: '吃',
+    id: '1',
+    list: arrayToString(homeFoodList.concat(indulgeFoodList))
+  },
+  {
+    label: '家常菜',
+    type: '吃',
+    id: '2',
+    list: arrayToString(homeFoodList)
+  },
+  {
+    label: '奶茶类',
+    type: '喝',
+    id: '3',
+    list: arrayToString(milkTeaList)
+  },
+  {
+    label: '放纵餐',
+    type: '吃',
+    id: '4',
+    list: arrayToString(indulgeFoodList)
+  },
+]
+
+export { menuList, elementPath, meituanPath, homeFoodList, milkTeaList, indulgeFoodList };

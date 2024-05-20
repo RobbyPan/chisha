@@ -6,7 +6,8 @@ import {
   indulgeFoodList,
   elementPath,
   meituanPath,
-} from "../../config.js";
+  menuList,
+} from "../../config";
 Page({
   data: {
     isTitleShow: true,
@@ -17,11 +18,10 @@ Page({
     milkTeaList: [],
     indulgeFoodList: [],
     activeType: "random",
-    // randomItem: "",
     randomItem: {
       name: "",
-      type: "random",
-      time: "2077-05-20 20:13:14:",
+      type: "",
+      time: "",
     },
     randomItemList: [],
     randomTimer: null,
@@ -30,12 +30,42 @@ Page({
     callMomFood: false,
     isModalShow: false,
     textareaValue: "",
-    isDrink: false,
 
     historyTop: 60, // 历史记录顶部距离页面顶部的距离
     historyHeight: 60, // 历史记录的高度
     menuButtonWidth: 60, // ...菜单按钮宽度
     menuButtonLeft: 280, // ...菜单按钮距离页面左边的距离
+
+    menuItem: {
+      label: "随便选",
+      type: "吃",
+      id: "1",
+      list: [],
+    }, // 菜单对象
+  },
+
+  /**
+   * 获取菜单列表
+   */
+  getMenuItem(data) {
+    const { menuItem } = data.detail;
+    this.setData({
+      menuItem: {
+        list: stringToArray(menuItem.list),
+        label: menuItem.label,
+        type: menuItem.type,
+        id: menuItem.id,
+      },
+      isTitleShow: true,
+      toTakeOut: false,
+      callMomFood: false,
+      randomItem: {
+        name: "",
+        type: "",
+      },
+      randomTimer: null,
+      isBtnClick: false,
+    });
   },
 
   /**
@@ -84,55 +114,14 @@ Page({
    * 从列表中随机获取一个元素
    */
   getRandomFromList() {
-    const { list, activeType } = this.data;
-    const typeMap = {
-      random: "随便选",
-      home: "家常菜",
-      milkTea: "奶茶类",
-      indulge: "放纵餐",
-    };
-    const randomIndex = Math.floor(Math.random() * list.length);
-    const name = list[randomIndex];
+    const { menuItem } = this.data;
+    const randomIndex = Math.floor(Math.random() * menuItem.list.length);
+    const name = menuItem.list[randomIndex];
     this.setData({
       randomItem: {
         name: name,
-        type: typeMap[activeType],
+        type: menuItem.label,
       },
-    });
-  },
-
-  /**
-   * 类型选择
-   */
-  handleTypeClick(e) {
-    // 如果存在定时器则关闭
-    if (this.data.randomTimer) {
-      clearInterval(this.data.randomTimer);
-    }
-    const { type } = e.currentTarget.dataset;
-    const { homeFoodList, milkTeaList, indulgeFoodList } = this.data;
-    this.setData({
-      allList: [].concat(homeFoodList, indulgeFoodList),
-    });
-    const typeMap = {
-      random: this.data.allList,
-      home: homeFoodList,
-      milkTea: milkTeaList,
-      indulge: indulgeFoodList,
-    };
-    this.setData({
-      list: typeMap[type],
-      isTitleShow: true,
-      toTakeOut: false,
-      callMomFood: false,
-      randomItem: {
-        name: "",
-        type: "random",
-      },
-      randomTimer: null,
-      isBtnClick: false,
-      activeType: type,
-      isDrink: type === "milkTea",
     });
   },
 
@@ -140,15 +129,8 @@ Page({
    * 自定义菜单
    */
   editHandler() {
-    const { activeType, allList, homeFoodList, milkTeaList, indulgeFoodList } =
-      this.data;
-    const typeMap = {
-      random: allList,
-      home: homeFoodList,
-      milkTea: milkTeaList,
-      indulge: indulgeFoodList,
-    };
-    const value = arrayToString(typeMap[activeType]);
+    const { menuItem } = this.data;
+    const value = arrayToString(menuItem.list);
     //弹出框
     this.setData({
       textareaValue: value,
@@ -164,45 +146,19 @@ Page({
     this.setData({
       textareaValue: value,
     });
-    console.log(value);
   },
 
   /**
    * 自定义确认
    */
   confirmHandler() {
-    const { textareaValue, activeType } = this.data;
-    const dataList = stringToArray(textareaValue);
-    const typeMap = {
-      random: () => {
-        this.setData({
-          allList: dataList,
-        });
-      },
-      home: () => {
-        this.setData({
-          homeFoodList: dataList,
-        });
-      },
-      milkTea: () => {
-        this.setData({
-          milkTeaList: dataList,
-        });
-      },
-      indulge: () => {
-        this.setData({
-          indulgeFoodList: dataList,
-        });
-      },
-    };
-    typeMap[activeType]();
     this.setData({
-      list: {
-        random: this.data.allList,
-        home: this.data.homeFoodList,
-        milkTea: this.data.milkTeaList,
-        indulge: this.data.indulgeFoodList,
-      }[activeType],
+      menuItem: {
+        list: stringToArray(this.data.textareaValue),
+        label: this.data.menuItem.label,
+        type: this.data.menuItem.type,
+        id: this.data.menuItem.id,
+      },
       isModalShow: false,
     });
   },
@@ -211,15 +167,13 @@ Page({
    * 自定义重置
    */
   editResetHandler() {
-    const { activeType } = this.data;
-    const typeMap = {
-      random: [].concat(homeFoodList, indulgeFoodList),
-      home: homeFoodList,
-      milkTea: milkTeaList,
-      indulge: indulgeFoodList,
-    };
-    this.setData({
-      textareaValue: arrayToString(typeMap[activeType]),
+    menuList.map((item) => {
+      if (item.id === this.data.menuItem.id) {
+        console.log(item.list);
+        this.setData({
+          textareaValue: item.list,
+        });
+      }
     });
   },
 
@@ -326,7 +280,7 @@ Page({
       callMomFood: false,
       randomItem: {
         name: "",
-        type: "random",
+        type: "随便选",
       },
       randomTimer: null,
       isBtnClick: false,
@@ -337,7 +291,8 @@ Page({
    * 提醒我吃饭
    */
   remindToEatHandler() {
-    const { randomItem, isDrink } = this.data;
+    const { randomItem, menuItem } = this.data;
+    const isDrink = menuItem.type === "喝";
     wx.addPhoneCalendar({
       title: !!randomItem.name
         ? `该${isDrink ? "喝水" : "吃饭"}啦，今天${isDrink ? "喝" : "吃"}${

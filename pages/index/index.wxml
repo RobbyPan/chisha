@@ -5,7 +5,7 @@
     <view>历史记录</view>
   </view> -->
   <view class="menu-container" style="top:{{historyTop}}px;height:{{historyHeight}}px;">
-    <side-bar></side-bar>
+    <side-bar bindgetMenuItem="getMenuItem"></side-bar>
   </view>
   <button open-type="share" class="share-btn" style="width:{{menuButtonWidth}}px;height:{{historyHeight}}px;top:{{historyTop+historyHeight+10}}px;left:{{menuButtonLeft}}px;">
     <image src="../../images/share.png"></image>
@@ -18,8 +18,8 @@
     </view>
     <!-- 主要文字等 -->
     <view class="title-container">
-      <view wx:if="{{isTitleShow}}">看看今天{{isDrink?"喝":"吃"}}啥呢？</view>
-      <view wx:if="{{!isTitleShow&&!callMomFood}}">今天{{isDrink?"喝":"吃"}}{{randomItem.name}}吧！</view>
+      <view wx:if="{{isTitleShow}}">看看今天{{menuItem.type}}啥呢？</view>
+      <view wx:if="{{!isTitleShow&&!callMomFood}}">今天{{menuItem.type}}{{randomItem.name}}吧！</view>
       <view wx:if="{{callMomFood}}">给咱妈说回家吃吧！</view>
     </view>
     <!-- 各种链接跳转 -->
@@ -56,20 +56,6 @@
   <!-- 开始按钮 -->
   <view class="btn-container" bindtap="handleBtnClick">
     <view>{{isBtnClick?"停":"随机选"}}</view>
-  </view>
-  <view class="type-container">
-    <view class="type-box {{activeType==='random'?'active-text':'inactive-text'}}" data-type="random" bindtap="handleTypeClick">
-      <view>随便选</view>
-    </view>
-    <view class="type-box {{activeType==='home'?'active-text':'inactive-text'}}" data-type="home" bindtap="handleTypeClick">
-      <view>家常菜</view>
-    </view>
-    <view class="type-box {{activeType==='milkTea'?'active-text':'inactive-text'}}" data-type="milkTea" bindtap="handleTypeClick">
-      <view>奶茶类</view>
-    </view>
-    <view class="type-box {{activeType==='indulge'?'active-text':'inactive-text'}}" data-type="indulge" bindtap="handleTypeClick">
-      <view>放纵餐</view>
-    </view>
   </view>
   <!-- 自定义菜单 -->
   <view class="options-container" bindtap="editHandler">

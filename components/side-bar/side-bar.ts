@@ -1,4 +1,8 @@
 // components/side-bar/side-bar.ts
+import {
+  menuList
+} from "../../config";
+
 Component({
 
   /**
@@ -8,39 +12,25 @@ Component({
 
   },
 
-  /**
-   * 组件的初始数据
-   */
   data: {
     isSideBarOpen: false,
     isSideBarShow: false,
-    menuList: [
-      {
-        label: '随便选',
-        id: '1'
-      },
-      {
-        label: '家常菜',
-        id: '2'
-      },
-      {
-        label: '奶茶类',
-        id: '3'
-      },
-      {
-        label: '放纵餐',
-        id: '4'
-      },
-    ],
-    activeId: '1',
+    menuList: [],
+    activeItem: {},
   },
 
-  /**
-   * 组件的方法列表
-   */
   methods: {
+    init() {
+      this.setData({
+        menuList,
+        activeItem: menuList[0],
+      })
+      this.postMenu()
+    },
+    /**
+     * 切换侧边栏
+     */
     toggleSideBar() {
-      console.log("toggleSideBar");
       const { isSideBarOpen, isSideBarShow } = this.data;
       this.setData({
         isSideBarShow: !isSideBarShow,
@@ -52,13 +42,35 @@ Component({
       }, isSideBarOpen ? 300 : 0)
 
     },
+
+    /**
+     * 切换菜单
+     * @param e 
+     */
     switchMenu(e) {
       const { item } = e.currentTarget.dataset;
-      console.log("switchMenu", item);
       this.setData({
-        activeId: item.id,
+        activeItem: item,
       });
+      this.postMenu()
+      this.toggleSideBar()
     },
+
+    /**
+     * 菜单传给父组件
+     */
+    postMenu() {
+      const { activeItem } = this.data;
+      this.triggerEvent('getMenuItem', {
+        menuItem: activeItem
+      })
+    }
+  },
+
+  /********************生命周期*********************/
+  attached() {
+    this.init()
   }
 })
+
 
