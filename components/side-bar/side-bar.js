@@ -1,17 +1,11 @@
 // components/side-bar/side-bar.ts
-declare var wx: any;
-import {
-  menuList
-} from "../../config";
+import { menuList } from "../../config";
 
 Component({
-
   /**
    * 组件的属性列表
    */
-  properties: {
-
-  },
+  properties: {},
 
   data: {
     isSideBarOpen: false,
@@ -25,8 +19,8 @@ Component({
       this.setData({
         menuList,
         activeItem: menuList[0],
-      })
-      this.postMenu()
+      });
+      this.postMenu();
     },
     /**
      * 切换侧边栏
@@ -36,25 +30,27 @@ Component({
       this.setData({
         isSideBarShow: !isSideBarShow,
       });
-      setTimeout(() => {
-        this.setData({
-          isSideBarOpen: !isSideBarOpen,
-        });
-      }, isSideBarOpen ? 300 : 0)
-
+      setTimeout(
+        () => {
+          this.setData({
+            isSideBarOpen: !isSideBarOpen,
+          });
+        },
+        isSideBarOpen ? 300 : 0
+      );
     },
 
     /**
      * 切换菜单
-     * @param e 
+     * @param e
      */
     switchMenu(e) {
       const { item } = e.currentTarget.dataset;
       this.setData({
         activeItem: item,
       });
-      this.postMenu()
-      this.toggleSideBar()
+      this.postMenu();
+      this.toggleSideBar();
     },
 
     /**
@@ -62,26 +58,24 @@ Component({
      */
     postMenu() {
       const { activeItem } = this.data;
-      this.triggerEvent('getMenuItem', {
-        menuItem: activeItem
-      })
+      this.triggerEvent("getMenuItem", {
+        menuItem: activeItem,
+      });
     },
     /**
      * 跳转历史记录页面
      */
 
     goHistoryPage() {
-      this.toggleSideBar()
+      this.toggleSideBar();
       wx.navigateTo({
-        url: '/pages/history/history',
-      })
-    }
+        url: "/pages/history/history",
+      });
+    },
   },
 
   /********************生命周期*********************/
   attached() {
-    this.init()
-  }
-})
-
-
+    this.init();
+  },
+});

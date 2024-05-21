@@ -6,11 +6,6 @@ Page({
     isTitleShow: true,
     isBtnClick: false,
     list: [],
-    allList: [],
-    homeFoodList: [],
-    milkTeaList: [],
-    indulgeFoodList: [],
-    activeType: "random",
     randomItem: {
       name: "",
       type: "",
@@ -165,7 +160,6 @@ Page({
   editResetHandler() {
     menuList.map((item) => {
       if (item.id === this.data.menuItem.id) {
-        console.log(item.list);
         this.setData({
           textareaValue: item.list,
         });
