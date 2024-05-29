@@ -1,23 +1,22 @@
 // index.js
-import { arrayToString, stringToArray, getTime } from "../../utils/utils";
-import { elementPath, meituanPath, menuList } from "../../config";
+import { arrayToString, stringToArray, getTime } from '../../utils/utils';
+import { elementPath, meituanPath, menuList } from '../../config';
 Page({
   data: {
     isTitleShow: true,
     isBtnClick: false,
     list: [],
     randomItem: {
-      name: "",
-      type: "",
-      time: "",
+      name: '',
+      type: '',
+      time: '',
     },
     randomItemList: [],
     randomTimer: null,
     clickCount: 0,
     toTakeOut: false,
-    callMomFood: false,
     isModalShow: false,
-    textareaValue: "",
+    textareaValue: '',
 
     historyTop: 60, // 历史记录顶部距离页面顶部的距离
     historyHeight: 60, // 历史记录的高度
@@ -25,9 +24,9 @@ Page({
     menuButtonLeft: 280, // ...菜单按钮距离页面左边的距离
 
     menuItem: {
-      label: "随便选",
-      type: "吃",
-      id: "1",
+      label: '随便选',
+      type: '吃',
+      id: '1',
       list: [],
     }, // 菜单对象
   },
@@ -49,10 +48,9 @@ Page({
       },
       isTitleShow: true,
       toTakeOut: false,
-      callMomFood: false,
       randomItem: {
-        name: "",
-        type: "",
+        name: '',
+        type: '',
       },
       randomTimer: null,
       isBtnClick: false,
@@ -64,13 +62,12 @@ Page({
    */
   handleBtnClick() {
     wx.vibrateShort({
-      type: "heavy",
+      type: 'heavy',
     });
     this.setData({
       isTitleShow: false,
       clickCount: this.data.clickCount > 10 ? 0 : this.data.clickCount,
       toTakeOut: this.data.clickCount === 5,
-      callMomFood: this.data.clickCount === 10,
     });
     if (this.data.isBtnClick) {
       clearInterval(this.data.randomTimer);
@@ -85,7 +82,7 @@ Page({
         ]),
       });
       wx.setStorage({
-        key: "randomItemList",
+        key: 'randomItemList',
         data: this.data.randomItemList,
       });
       return;
@@ -94,7 +91,6 @@ Page({
       isBtnClick: true,
       clickCount: this.data.clickCount + 1,
       toTakeOut: false,
-      callMomFood: false,
       randomTimer: setInterval(() => {
         this.getRandomFromList();
       }, 80),
@@ -174,7 +170,7 @@ Page({
     this.copyFood();
     setTimeout(() => {
       wx.navigateToMiniProgram({
-        appId: "wx7564fd5313d24844",
+        appId: 'wx7564fd5313d24844',
       });
     }, 2000);
   },
@@ -186,7 +182,7 @@ Page({
     this.copyFood();
     setTimeout(() => {
       wx.navigateToMiniProgram({
-        appId: "wxb296433268a1c654",
+        appId: 'wxb296433268a1c654',
       });
     }, 2000);
   },
@@ -196,7 +192,7 @@ Page({
    */
   gotoMeituanNoCopy() {
     wx.navigateToMiniProgram({
-      appId: "wxde8ac0a21135c07d",
+      appId: 'wxde8ac0a21135c07d',
       path: meituanPath,
     });
   },
@@ -216,7 +212,7 @@ Page({
    */
   gotoElemeNoCopy() {
     wx.navigateToMiniProgram({
-      appId: "wxece3a9a4c82f58c9",
+      appId: 'wxece3a9a4c82f58c9',
       path: elementPath,
     });
   },
@@ -238,7 +234,7 @@ Page({
     this.copyFood();
     setTimeout(() => {
       wx.navigateToMiniProgram({
-        appId: "wx7643d5f831302ab0",
+        appId: 'wx7643d5f831302ab0',
       });
     }, 2000);
   },
@@ -251,8 +247,8 @@ Page({
       data: this.data.randomItem.name,
       success() {
         wx.showToast({
-          title: "已复制到剪贴板",
-          icon: "none",
+          title: '已复制到剪贴板',
+          icon: 'none',
           duration: 2000,
         });
       },
@@ -267,10 +263,9 @@ Page({
       isTitleShow: true,
       clickCount: 0,
       toTakeOut: false,
-      callMomFood: false,
       randomItem: {
-        name: "",
-        type: "随便选",
+        name: '',
+        type: '随便选',
       },
       randomTimer: null,
       isBtnClick: false,
@@ -282,13 +277,13 @@ Page({
    */
   remindToEatHandler() {
     const { randomItem, menuItem } = this.data;
-    const isDrink = menuItem.type === "喝";
+    const isDrink = menuItem.type === '喝';
     wx.addPhoneCalendar({
       title: !!randomItem.name
-        ? `该${isDrink ? "喝水" : "吃饭"}啦，今天${isDrink ? "喝" : "吃"}${
+        ? `该${isDrink ? '喝水' : '吃饭'}啦，今天${isDrink ? '喝' : '吃'}${
             randomItem.name
           }吧！`
-        : `该${isDrink ? "喝水" : "吃饭"}啦`,
+        : `该${isDrink ? '喝水' : '吃饭'}啦`,
       startTime: Math.round(new Date().getTime() / 1000), //unix时间戳
     });
   },
@@ -298,11 +293,11 @@ Page({
    */
   callMe() {
     wx.setClipboardData({
-      data: "miaopasia",
+      data: 'miaopasia',
       success() {
         wx.showToast({
-          title: "已复制到剪贴板",
-          icon: "none",
+          title: '已复制到剪贴板',
+          icon: 'none',
           duration: 2000,
         });
       },
@@ -314,7 +309,7 @@ Page({
    */
   toHistory() {
     wx.navigateTo({
-      url: "../history/history",
+      url: '../history/history',
     });
   },
 
@@ -323,7 +318,7 @@ Page({
   onLoad() {
     const ButtonBoundingClient = wx.getMenuButtonBoundingClientRect();
     this.setData({
-      randomItemList: wx.getStorageSync("randomItemList") || [],
+      randomItemList: wx.getStorageSync('randomItemList') || [],
       historyTop: ButtonBoundingClient.top,
       historyHeight: ButtonBoundingClient.height,
       menuButtonWidth: ButtonBoundingClient.width,
@@ -347,8 +342,8 @@ Page({
    */
   onShareAppMessage() {
     return {
-      title: "随机抽签吃啥",
-      path: "/pages/index/index",
+      title: '随机抽签吃啥',
+      path: '/pages/index/index',
     };
   },
 
@@ -357,7 +352,7 @@ Page({
    */
   onShareTimeline() {
     return {
-      title: "随机抽签吃啥",
+      title: '随机抽签吃啥',
     };
   },
 });

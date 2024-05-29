@@ -19,13 +19,12 @@
     <!-- 主要文字等 -->
     <view class="title-container">
       <view wx:if="{{isTitleShow}}">看看今天{{menuItem.type}}啥呢？</view>
-      <view wx:if="{{!isTitleShow&&!callMomFood}}" style="{{randomItem.name.length>6?randomItem.name.length>8?randomItem.name.length>10?'font-size: 40rpx;':'font-size: 50rpx;':'font-size:55rpx':'font-size:60rpx'}}">
+      <view wx:if="{{!isTitleShow}}" style="{{randomItem.name.length>6?randomItem.name.length>8?randomItem.name.length>10?'font-size: 40rpx;':'font-size: 50rpx;':'font-size:55rpx':'font-size:60rpx'}}">
         今天{{menuItem.type}}{{randomItem.name}}吧！
       </view>
-      <view wx:if="{{callMomFood&&menuItem.type==='吃'}}">给咱妈说回家吃吧！</view>
     </view>
     <!-- 各种链接跳转 -->
-    <view wx:if="{{!isBtnClick&&!isTitleShow&&!toTakeOut&&!callMomFood}}" class="links-container">
+    <view wx:if="{{!isBtnClick&&!isTitleShow&&!toTakeOut}}" class="links-container">
       <view class="links-box" bindtap="gotoBilibili">
         <image src="../../images/bilibili.png"></image>
         <view>搜教程</view>
