@@ -11,7 +11,7 @@
   flex-direction: column;
   justify-content: flex-start;
   align-items: center;
-  padding-top: 300rpx;
+  padding: 0;
 }
 .container .menu-container {
   position: absolute;
@@ -42,6 +42,7 @@
   justify-content: space-around;
   align-items: center;
   position: relative;
+  margin-top: 200rpx;
 }
 .container .main-container .logo {
   position: absolute;
