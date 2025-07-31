@@ -11,8 +11,9 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad(options) {
+    if (!wx.getStorageSync('randomItemList')) return;
     this.setData({
-      list: wx.getStorageSync("randomItemList").reverse(),
+      list: wx.getStorageSync('randomItemList').reverse(),
     });
   },
 
@@ -25,8 +26,8 @@ Page({
       data: item.name,
       success() {
         wx.showToast({
-          title: "已复制到剪贴板",
-          icon: "none",
+          title: '已复制到剪贴板',
+          icon: 'none',
           duration: 1000,
         });
       },
